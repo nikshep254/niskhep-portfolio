@@ -87,9 +87,15 @@
   .exp-desc { font-size: 13.5px; line-height: 1.68; opacity: 0.72; }
 
   /* ── PROJECTS ── */
-  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 64px; }
-  .project-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.25s; text-decoration: none; color: inherit; display: block; backdrop-filter: blur(12px); }
-  .project-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.14); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .tw-cursor { display: inline-block; color: rgba(167,139,250,0.8); animation: tw-blink 1s step-end infinite; font-weight: 300; }
+  @keyframes tw-blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 64px; perspective: 1200px; }
+  .project-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.12s ease, border-color 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; display: block; backdrop-filter: blur(12px); transform-style: preserve-3d; will-change: transform; }
+  .project-card:hover { border-color: rgba(255,255,255,0.18); }
+  /* tilt shine overlay */
+  .project-card .tilt-shine { position: absolute; inset: 0; border-radius: 16px; pointer-events: none; opacity: 0; transition: opacity 0.2s; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12), transparent 65%); z-index: 10; }
+  .project-card:hover .tilt-shine { opacity: 1; }
+  .project-card { position: relative; }
   .project-preview-wrap { width: 100%; height: 165px; overflow: hidden; position: relative; background: #0a0a14; }
   .project-preview-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.5s ease; }
   .project-card:hover .project-preview-img { transform: scale(1.05); }
@@ -293,7 +299,7 @@
 
   <h1 class="hero-title reveal">
     Hi, I'm <span style="color:var(--text)">Nikshep</span><br>
-    <span class="dim">— A Full Stack web developer.</span>
+    <span class="dim">— <span id="typewriter"></span><span class="tw-cursor">|</span></span>
   </h1>
 
   <p class="hero-desc reveal">
@@ -349,31 +355,37 @@
     <div class="projects-grid">
 
       <a href="https://copiumai.xo.je" target="_blank" class="project-card reveal" data-url="https://copiumai.xo.je">
+        <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">CopiumAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">AI-powered productivity tool with smart features for enhancing your workflow.</p><div class="project-tags"><span class="tag">AI</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
       </a>
 
       <a href="https://entropyzero.vercel.app" target="_blank" class="project-card reveal" data-url="https://entropyzero.vercel.app">
+        <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">EntropyZero <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Minimal web app focused on reducing digital noise and maximizing clarity.</p><div class="project-tags"><span class="tag">React</span><span class="tag">Vercel</span><span class="tag">UI/UX</span></div></div>
       </a>
 
       <a href="https://instagen-hyperdesi.vercel.app" target="_blank" class="project-card reveal" data-url="https://instagen-hyperdesi.vercel.app">
+        <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">InstaGen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Instant generation platform — create stunning visuals at hyperspeed with AI.</p><div class="project-tags"><span class="tag">AI</span><span class="tag">Generation</span><span class="tag">Next.js</span></div></div>
       </a>
 
       <a href="https://rupeerewind.vercel.app" target="_blank" class="project-card reveal" data-url="https://rupeerewind.vercel.app">
+        <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">RupeeRewind <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Personal finance tracker — India-focused spending visualizer.</p><div class="project-tags"><span class="tag">Finance</span><span class="tag">React</span><span class="tag">PostgreSQL</span></div></div>
       </a>
 
-      <a href="https://backyarddevs.xo.je" target="_blank" class="project-card reveal" data-url="https://backyarddevs.xo.je">
+      <a href="https://aellium.vercel.app" target="_blank" class="project-card reveal" data-url="https://aellium.vercel.app">
+        <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
-        <div class="project-body"><div class="project-name">BackyardDevs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">A community for indie developers building from the backyard — raw, real, resourceful.</p><div class="project-tags"><span class="tag">Community</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
+        <div class="project-body"><div class="project-name">Aellium <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">A sleek, modern product — crafted with precision and a sharp eye for design.</p><div class="project-tags"><span class="tag">SaaS</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
       </a>
 
       <a href="https://valentinespam.xo.je" target="_blank" class="project-card reveal" data-url="https://valentinespam.xo.je">
+        <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">ValentineSpam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Send unlimited cute, chaotic Valentine's messages — a fun micro-app for the season.</p><div class="project-tags"><span class="tag">Fun</span><span class="tag">React</span><span class="tag">UI/UX</span></div></div>
       </a>
@@ -494,7 +506,7 @@
     </div>
 
     <div class="footer-copy">
-      Designed &amp; Built by <a href="https://instagram.com/nikkk.exe" target="_blank">@nikkkexe</a> · Last Updated FEB 2026
+      Designed &amp; built by <a href="https://instagram.com/nikkk.exe" target="_blank">@nikkkexe</a> · 2025
     </div>
   </div>
 </footer>
@@ -725,6 +737,78 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
   document.body.classList.toggle('light');
   this.textContent = document.body.classList.contains('light') ? '🌑' : '🌙';
 });
+
+/* ── TYPEWRITER ───────────────────────────────────────────────────── */
+(function() {
+  const phrases = [
+    'A Full Stack web developer.',
+    'A UI/UX obsessive.',
+    'A Three.js enthusiast.',
+    'A TypeScript purist.',
+    'A builder of ideas.',
+  ];
+  const el = document.getElementById('typewriter');
+  if (!el) return;
+  let pi = 0, ci = 0, deleting = false;
+
+  function tick() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) {
+        deleting = true;
+        setTimeout(tick, 1800);
+        return;
+      }
+      setTimeout(tick, 55);
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) {
+        deleting = false;
+        pi = (pi + 1) % phrases.length;
+        setTimeout(tick, 320);
+        return;
+      }
+      setTimeout(tick, 28);
+    }
+  }
+  // Start after reveal animation settles
+  setTimeout(tick, 600);
+})();
+
+/* ── 3D TILT CARDS ────────────────────────────────────────────────── */
+(function() {
+  const TILT = 12; // max degrees
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    const shine = card.querySelector('.tilt-shine');
+
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const cx = r.width / 2, cy = r.height / 2;
+      const rotX = ((y - cy) / cy) * -TILT;
+      const rotY = ((x - cx) / cx) * TILT;
+
+      card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(8px)`;
+      card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 40px rgba(0,0,0,0.5), 0 0 20px rgba(167,139,250,0.08)`;
+
+      if (shine) {
+        const px = (x / r.width) * 100;
+        const py = (y / r.height) * 100;
+        shine.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.13), transparent 65%)`;
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+      card.style.boxShadow = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1)';
+      setTimeout(() => { card.style.transition = ''; }, 500);
+    });
+  });
+})();
 
 /* ── SMOOTH SCROLL ────────────────────────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
