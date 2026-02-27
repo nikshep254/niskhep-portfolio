@@ -322,7 +322,7 @@
   body.cursor-hover #cursor-ring { width: 44px; height: 44px; border-color: rgba(167,139,250,0.3); }
 
   /* ── BACK TO TOP ── */
-  #back-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; border-radius: 50%; background: rgba(124,58,237,0.85); border: 1px solid rgba(167,139,250,0.3); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 500; opacity: 0; transform: translateY(12px); transition: opacity 0.3s, transform 0.3s; backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(109,40,217,0.4); }
+  #back-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; border-radius: 50%; background: rgba(124,58,237,0.85); border: 1px solid rgba(167,139,250,0.3); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 590; opacity: 0; transform: translateY(12px); transition: opacity 0.3s, transform 0.3s; backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(109,40,217,0.4); }
   #back-top.visible { opacity: 1; transform: translateY(0); }
   #back-top:hover { background: rgba(124,58,237,1); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(109,40,217,0.6); }
   #back-top svg { width: 16px; height: 16px; }
@@ -349,7 +349,7 @@
   .btn-touch svg { width: 16px; height: 16px; flex-shrink: 0; }
 
   /* ── CHATBOT ── */
-  #chat-bubble { position: fixed; bottom: 80px; right: 28px; z-index: 600; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  #chat-bubble { position: fixed; bottom: 28px; right: 84px; z-index: 600; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
   #chat-label { background: rgba(20,20,35,0.92); border: 1px solid rgba(167,139,250,0.3); color: rgba(245,245,255,0.88); font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 20px; white-space: nowrap; backdrop-filter: blur(12px); box-shadow: 0 4px 16px rgba(0,0,0,0.4); pointer-events: none; animation: chat-label-bounce 2s ease-in-out infinite; }
   @keyframes chat-label-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
   #chat-toggle { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; cursor: pointer; border: 2px solid rgba(167,139,250,0.5); box-shadow: 0 4px 24px rgba(109,40,217,0.45), 0 0 0 0 rgba(167,139,250,0.3); background: #1a1a2e; padding: 0; transition: transform 0.2s, box-shadow 0.2s; animation: chat-pulse 3s ease-in-out infinite; image-rendering: pixelated; }
@@ -357,7 +357,7 @@
   #chat-toggle img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: pixelated; }
   @keyframes chat-pulse { 0%,100% { box-shadow: 0 4px 24px rgba(109,40,217,0.45), 0 0 0 0 rgba(167,139,250,0.3); } 50% { box-shadow: 0 4px 24px rgba(109,40,217,0.45), 0 0 0 7px rgba(167,139,250,0); } }
 
-  #chat-window { position: fixed; bottom: 148px; right: 28px; width: 340px; max-height: 520px; background: rgba(10,10,20,0.96); border: 1px solid rgba(167,139,250,0.25); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; z-index: 601; backdrop-filter: blur(24px); box-shadow: 0 20px 60px rgba(0,0,0,0.7); transform: scale(0.9) translateY(12px); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s; }
+  #chat-window { position: fixed; bottom: 92px; right: 84px; width: 340px; max-height: 520px; background: rgba(10,10,20,0.96); border: 1px solid rgba(167,139,250,0.25); border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; z-index: 601; backdrop-filter: blur(24px); box-shadow: 0 20px 60px rgba(0,0,0,0.7); transform: scale(0.9) translateY(12px); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s; }
   #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
   #chat-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.07); flex-shrink: 0; background: rgba(167,139,250,0.06); }
   #chat-header-avatar { width: 34px; height: 34px; border-radius: 50%; overflow: hidden; image-rendering: pixelated; border: 1.5px solid rgba(167,139,250,0.4); background: #1a1a2e; flex-shrink: 0; }
@@ -1336,7 +1336,38 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
   if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
 }));
 
-/* ── CHATBOT ──────────────────────────────────────────────────────── */
+</script>
+
+<!-- ── CHATBOT ── -->
+<div id="chat-bubble">
+  <div id="chat-label">know me better ✨</div>
+  <button id="chat-toggle" title="Chat with Nikshep's AI">
+    <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=BlueNinja&backgroundColor=1a1a2e" alt="Nikshep" />
+  </button>
+</div>
+
+<div id="chat-window">
+  <div id="chat-header">
+    <div id="chat-header-avatar">
+      <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=BlueNinja&backgroundColor=1a1a2e" alt="Nikshep" />
+    </div>
+    <div id="chat-header-info">
+      <div id="chat-header-name">Nikshep's AI</div>
+      <div id="chat-header-status">Online</div>
+    </div>
+    <button id="chat-close">✕</button>
+  </div>
+  <div id="chat-messages"></div>
+  <div id="chat-input-row">
+    <textarea id="chat-input" rows="1" placeholder="Ask me anything…"></textarea>
+    <button id="chat-send">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ── CHATBOT ── */
 (function(){
   const APIKEY = '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';
   const MODEL  = 'openai/gpt-4o-mini';
@@ -1358,12 +1389,12 @@ Be concise, friendly, and personal — answer as if you ARE Nikshep's portfolio 
 
   const win    = document.getElementById('chat-window');
   const toggle = document.getElementById('chat-toggle');
-  const close  = document.getElementById('chat-close');
+  const closeBtn = document.getElementById('chat-close');
   const msgs   = document.getElementById('chat-messages');
   const input  = document.getElementById('chat-input');
   const send   = document.getElementById('chat-send');
 
-  if (!win) return;
+  if (!win || !toggle) return;
 
   toggle.addEventListener('click', () => {
     win.classList.toggle('open');
@@ -1371,11 +1402,11 @@ Be concise, friendly, and personal — answer as if you ARE Nikshep's portfolio 
       addMsg('bot', "Hey! 👋 I'm Nikshep's AI. Ask me anything about him — his work, skills, or projects!");
     }
   });
-  close.addEventListener('click', () => win.classList.remove('open'));
+  closeBtn.addEventListener('click', () => win.classList.remove('open'));
 
   function addMsg(role, text) {
     const div = document.createElement('div');
-    div.className = `chat-msg ${role}`;
+    div.className = 'chat-msg ' + role;
     div.textContent = text;
     msgs.appendChild(div);
     msgs.scrollTop = msgs.scrollHeight;
@@ -1409,16 +1440,16 @@ Be concise, friendly, and personal — answer as if you ARE Nikshep's portfolio 
       const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${APIKEY}`,
+          'Authorization': 'Bearer ' + APIKEY,
           'Content-Type': 'application/json',
           'HTTP-Referer': window.location.href,
-          'X-Title': "Nikshep's Portfolio",
+          'X-Title': "Nikshep's Portfolio"
         },
         body: JSON.stringify({ model: MODEL, messages: messages.slice(0), max_tokens: 300 })
       });
       const data = await res.json();
       removeTyping();
-      const reply = data.choices?.[0]?.message?.content || "Hmm, couldn't get a reply. Try again!";
+      const reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "Hmm, couldn't get a reply. Try again!";
       messages.push({role:'assistant', content: reply});
       addMsg('bot', reply);
     } catch(e) {
@@ -1431,39 +1462,11 @@ Be concise, friendly, and personal — answer as if you ARE Nikshep's portfolio 
   }
 
   send.addEventListener('click', sendMsg);
-  input.addEventListener('keydown', e => {
+  input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
   });
 })();
 </script>
-
-<!-- ── CHATBOT ── -->
-<div id="chat-bubble">
-  <div id="chat-label">know me better ✨</div>
-  <button id="chat-toggle" title="Chat with Nikshep's AI">
-    <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=BlueNinja&backgroundColor=1a1a2e" alt="Nikshep" />
-  </button>
-</div>
-
-<div id="chat-window">
-  <div id="chat-header">
-    <div id="chat-header-avatar">
-      <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=BlueNinja&backgroundColor=1a1a2e" alt="Nikshep" />
-    </div>
-    <div id="chat-header-info">
-      <div id="chat-header-name">Nikshep's AI</div>
-      <div id="chat-header-status">Online</div>
-    </div>
-    <button id="chat-close">✕</button>
-  </div>
-  <div id="chat-messages"></div>
-  <div id="chat-input-row">
-    <textarea id="chat-input" rows="1" placeholder="Ask me anything…"></textarea>
-    <button id="chat-send">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
-  </div>
-</div>
 
 </body>
 </html>
