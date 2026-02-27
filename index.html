@@ -1369,8 +1369,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 <script>
 /* ── CHATBOT ── */
 (function(){
-  const APIKEY = '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';
-  const MODEL  = 'openai/gpt-4o-mini';
   const SYSTEM = `You are Nikshep Doggali's personal AI assistant embedded in his portfolio. You know everything about him:
 - Name: Nikshep Doggali, a full-stack developer and UI enthusiast from Mysore, India
 - Currently Founding Engineer at BackyardDevs (2024–Present, Remote)
@@ -1437,19 +1435,14 @@ Be concise, friendly, and personal — answer as if you ARE Nikshep's portfolio 
     messages.push({role:'user', content: text});
     showTyping();
     try {
-      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      const res = await fetch('/api/chat', {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + APIKEY,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': window.location.href,
-          'X-Title': "Nikshep's Portfolio"
-        },
-        body: JSON.stringify({ model: MODEL, messages: messages.slice(0), max_tokens: 300 })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: messages.slice(0) })
       });
       const data = await res.json();
       removeTyping();
-      const reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "Hmm, couldn't get a reply. Try again!";
+      const reply = data.reply || data.error || "Hmm, couldn't get a reply. Try again!";
       messages.push({role:'assistant', content: reply});
       addMsg('bot', reply);
     } catch(e) {
