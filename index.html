@@ -38,9 +38,6 @@
   /* ── MAIN ── */
   main { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
 
-  /* ── VISITOR PILL ── */
-  .visitor-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; font-size: 13px; color: var(--muted); margin-bottom: 36px; background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); }
-  .visitor-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse-green 2s infinite; }
   @keyframes pulse-green { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); } 50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); } }
 
   /* ── HERO ── */
@@ -288,6 +285,63 @@
   .fb-more:hover { color: rgba(167,139,250,1); }
   .fb-more svg { width: 12px; height: 12px; }
 
+
+  /* ── FOOTER BENTO EXTENDED ── */
+  .footer-bento { grid-template-columns: 1fr 1fr; }
+
+  /* Flip clock visitor */
+  .footer-visitor-card {
+    background: var(--glass-bg); backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid var(--glass-border); border-radius: 20px;
+    padding: 24px 26px; position: relative; overflow: hidden;
+  }
+  .footer-visitor-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(140deg, rgba(167,139,250,0.06) 0%, transparent 55%); pointer-events: none; }
+  .fv-inner { position: relative; z-index: 1; }
+  .fv-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
+  .flip-clock { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .flip-digit {
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; width: 36px; height: 48px; position: relative;
+    overflow: hidden; justify-content: center;
+  }
+  .flip-digit span {
+    font-size: 22px; font-weight: 900; line-height: 1;
+    font-variant-numeric: tabular-nums; letter-spacing: -1px;
+    background: linear-gradient(135deg, #f5f5ff, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .flip-digit::after {
+    content: ''; position: absolute; left: 0; right: 0; top: 50%;
+    height: 1px; background: rgba(0,0,0,0.4); pointer-events: none;
+  }
+  .flip-sep { font-size: 18px; font-weight: 900; color: var(--muted); line-height: 1; padding: 0 1px; }
+  .fv-sub { font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+  /* Bengaluru time + weather card */
+  .footer-local-card {
+    background: var(--glass-bg); backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid var(--glass-border); border-radius: 20px;
+    padding: 24px 26px; position: relative; overflow: hidden;
+  }
+  .footer-local-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(140deg, rgba(99,179,237,0.04) 0%, transparent 55%); pointer-events: none; }
+  .fl-inner { position: relative; z-index: 1; }
+  .fl-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+  .fl-city { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+  .fl-city-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse-green 2s infinite; flex-shrink: 0; }
+  #fl-time { font-size: 30px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin: 6px 0 10px;
+    background: linear-gradient(135deg, #f5f5ff 0%, #a78bfa 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .fl-weather-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  #fl-weather-icon { font-size: 20px; }
+  #fl-weather-temp { font-size: 14px; font-weight: 700; color: var(--text); }
+  #fl-weather-desc { font-size: 12px; color: var(--muted); }
+
+  /* Last deployed */
+  .footer-deploy-line { text-align: center; font-size: 12px; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .deploy-dot { width: 5px; height: 5px; border-radius: 50%; background: #22c55e; display: inline-block; }
   .footer-copy { text-align: center; font-size: 13px; color: var(--muted); }
   .footer-copy a { color: var(--text); font-weight: 600; text-decoration: none; }
   .footer-copy a:hover { text-decoration: underline; }
@@ -426,12 +480,6 @@
 </nav>
 
 <main>
-
-  <!-- VISITOR -->
-  <div class="visitor-pill reveal">
-    <div class="visitor-dot"></div>
-    <span id="visitor-count">Loading…</span>
-  </div>
 
   <!-- HERO AVATAR -->
   <div class="hero-avatar reveal">
@@ -776,6 +824,35 @@
         </div>
       </div>
 
+
+      <!-- Visitor flip clock card -->
+      <div class="footer-visitor-card reveal">
+        <div class="fv-inner">
+          <div class="fv-label">Total Visitors</div>
+          <div class="flip-clock" id="flip-clock"></div>
+          <div class="fv-sub">You're one of them 👀</div>
+        </div>
+      </div>
+
+      <!-- Bengaluru time + weather card -->
+      <div class="footer-local-card reveal">
+        <div class="fl-inner">
+          <div class="fl-label">Nikshep's Location</div>
+          <div class="fl-city"><span class="fl-city-dot"></span>Bengaluru, India · IST</div>
+          <div id="fl-time">--:--</div>
+          <div class="fl-weather-row">
+            <span id="fl-weather-icon">🌤</span>
+            <span id="fl-weather-temp">--°C</span>
+            <span id="fl-weather-desc">Loading weather…</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-deploy-line">
+      <span class="deploy-dot"></span>
+      Last deployed: <span id="deploy-time">--</span>
     </div>
 
     <div class="footer-copy">
@@ -971,12 +1048,96 @@ refreshGita();
 // Auto-rotate every 8s
 setInterval(refreshGita, 8000);
 
-/* ── VISITOR COUNTER ──────────────────────────────────────────────── */
+/* ── FLIP CLOCK VISITOR COUNTER ───────────────────────────────────── */
 (function(){
   const BASE = 2512;
   let v = parseInt(localStorage.getItem('nd_v4')||'0',10)+1;
   localStorage.setItem('nd_v4',v);
-  document.getElementById('visitor-count').textContent = `Visitor #${(BASE+v).toLocaleString()} — thanks for stopping by!`;
+  const total = BASE + v;
+  const container = document.getElementById('flip-clock');
+  if (!container) return;
+
+  const digits = String(total).split('');
+  // add comma separators
+  const formatted = total.toLocaleString();
+  let html = '';
+  for (let ch of formatted) {
+    if (ch === ',') {
+      html += '<span class="flip-sep">,</span>';
+    } else {
+      html += `<div class="flip-digit"><span>${ch}</span></div>`;
+    }
+  }
+  container.innerHTML = html;
+
+  // Animate each digit flipping in
+  const flipDivs = container.querySelectorAll('.flip-digit');
+  flipDivs.forEach((d, i) => {
+    d.style.opacity = '0';
+    d.style.transform = 'rotateX(-90deg)';
+    d.style.transition = 'none';
+    setTimeout(() => {
+      d.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+      d.style.opacity = '1';
+      d.style.transform = 'rotateX(0deg)';
+    }, 200 + i * 80);
+  });
+})();
+
+/* ── BENGALURU LIVE CLOCK ──────────────────────────────────────────── */
+(function(){
+  const el = document.getElementById('fl-time');
+  if (!el) return;
+  function tick() {
+    const now = new Date();
+    const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    const h = String(ist.getHours()).padStart(2,'0');
+    const m = String(ist.getMinutes()).padStart(2,'0');
+    const s = String(ist.getSeconds()).padStart(2,'0');
+    el.textContent = `${h}:${m}:${s}`;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── BENGALURU WEATHER ─────────────────────────────────────────────── */
+(function(){
+  const WMO = {0:'Clear ☀️',1:'Mostly clear 🌤',2:'Partly cloudy ⛅',3:'Overcast ☁️',45:'Foggy 🌫',48:'Icy fog 🌫',51:'Light drizzle 🌦',53:'Drizzle 🌦',55:'Heavy drizzle 🌧',61:'Light rain 🌧',63:'Rain 🌧',65:'Heavy rain 🌧',71:'Light snow 🌨',73:'Snow 🌨',75:'Heavy snow ❄️',80:'Rain showers 🌦',81:'Showers 🌧',82:'Heavy showers ⛈',95:'Thunderstorm ⛈',96:'Hail storm ⛈'};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current_weather=true')
+    .then(r => r.json())
+    .then(d => {
+      const w = d.current_weather;
+      const temp = Math.round(w.temperature);
+      const desc = WMO[w.weathercode] || 'Fair weather';
+      const icon = desc.split(' ').pop();
+      const text = desc.split(' ').slice(0,-1).join(' ');
+      document.getElementById('fl-weather-icon').textContent = icon;
+      document.getElementById('fl-weather-temp').textContent = temp + '°C';
+      document.getElementById('fl-weather-desc').textContent = text;
+    })
+    .catch(() => {
+      document.getElementById('fl-weather-desc').textContent = 'Weather unavailable';
+    });
+})();
+
+/* ── LAST DEPLOYED ─────────────────────────────────────────────────── */
+(function(){
+  const el = document.getElementById('deploy-time');
+  if (!el) return;
+  // document.lastModified reflects file serve time — on Vercel this is deploy time
+  const lm = new Date(document.lastModified);
+  const valid = lm.getFullYear() > 2020;
+  if (valid) {
+    el.textContent = lm.toLocaleDateString('en-IN', {
+      day:'numeric', month:'short', year:'numeric',
+      hour:'2-digit', minute:'2-digit', timeZone:'Asia/Kolkata'
+    }) + ' IST';
+  } else {
+    // fallback: show current date as build date
+    el.textContent = new Date().toLocaleDateString('en-IN', {
+      day:'numeric', month:'short', year:'numeric', timeZone:'Asia/Kolkata'
+    });
+  }
 })();
 
 /* ── MICROLINK PREVIEWS ───────────────────────────────────────────── */
