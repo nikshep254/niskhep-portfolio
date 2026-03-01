@@ -610,6 +610,11 @@
         <div class="project-body"><div class="project-name">ValentineSpam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Send unlimited cute, chaotic Valentine's messages — a fun micro-app for the season.</p><div class="project-tags"><span class="tag">Fun</span><span class="tag">React</span><span class="tag">UI/UX</span></div></div>
       </a>
 
+      <a href="https://kairosflow.vercel.app" target="_blank" class="project-card reveal" data-url="https://kairosflow.vercel.app">
+        <div class="tilt-shine"></div>
+        <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
+        <div class="project-body"><div class="project-name">Kairos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">The right moment, beautifully captured — a flow-focused productivity experience.</p><div class="project-tags"><span class="tag">Productivity</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
+      </a>
     </div>
   </div>
 
@@ -1369,69 +1374,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 <script>
 /* ── CHATBOT ── */
 (function(){
-  const SYSTEM = `You are the personal portfolio assistant for Nikshep Doggali. You ONLY answer questions about Nikshep's development journey, projects, education, and persona. If someone asks anything outside of these topics (e.g. general coding help, world events, opinions, other people), respond with something playful like: "Ha, nice try! But I'm Nikshep's portfolio buddy — I only spill the tea on him. Ask me about his projects, skills, or journey instead 😄"
 
-Here is everything you know about Nikshep:
 
-PERSONA & WHO HE IS:
-- Full-stack developer and UI enthusiast from Mysore, India
-- Driven by three core pillars: Drive to Create, Spirituality & Karma, and Power of Taste
-- Deeply influenced by the Bhagavad Gita — believes in doing work with full devotion and letting outcomes follow
-- Has a sharp eye for design — believes great software must feel as good as it works
-- Loves building things that have taste, craft, and intentionality behind them
-- Interested in books, movies, and immersive digital experiences
-
-EDUCATION:
-- Schooled at DPS Mysore (Delhi Public School, Mysore) — until 2024
-- Self-taught developer — learned by building real projects, not just tutorials
-- Constantly leveling up through hands-on experience at BackyardDevs and nogoofup
-
-DEVELOPMENT JOURNEY:
-- Started coding out of curiosity, quickly became obsessed with UI and web experiences
-- Went from learning basics to shipping 6+ production projects in under 2 years
-- Discovered Three.js and fell in love with 3D on the web
-- Journey: curiosity → UI obsession → full-stack → production apps → founding engineer
-
-EXPERIENCE & WORK:
-- BackyardDevs — Founding Engineer (2024–Present, Remote, India)
-  → Architected full-stack web applications from scratch: AI tools, finance trackers, 3D web experiences
-  → Shipped 6+ production projects with focus on performance, clean UI/UX, and scalable architecture
-  → Implemented backend API integrations, efficient data fetching, robust error handling
-  → Built consistent design systems, sharp typography, seamless micro-interactions
-  → Tech used: Next.js, Tailwind CSS, TypeScript, React, PostgreSQL, Vercel, Bun
-
-- nogoofup — Founder (2024–Present, Remote, India)
-  → Built a smart exam preparation tracker and education management platform
-  → Features: goal-setting, progress analytics, accountability tools, data-driven study insights
-  → Solving the gap between raw study time and actual exam readiness
-
-- DPS Mysore — Schooling (Until 2024)
-
-TECH STACK & SKILLS:
-- Languages: TypeScript, JavaScript
-- Frontend: React, Next.js, Tailwind CSS, Three.js, HTML/CSS
-- Backend: Node.js, Bun, PostgreSQL, REST APIs
-- Tools: Vercel, Figma, Git
-- Strengths: UI/UX design, 3D web, performance optimization, design systems
-
-PROJECTS (6+ shipped):
-- Full-stack AI tools
-- Finance trackers
-- Immersive 3D web experiences
-- nogoofup (education/prep platform)
-- Various production apps built at BackyardDevs
-
-CONTACT:
-- Instagram: @nikkk.exe
-
-RULES:
-- Only discuss Nikshep's journey, projects, education, persona, skills, and work
-- Be warm, concise, and personal — like a knowledgeable friend talking about Nikshep
-- Keep answers to 2-4 sentences unless a detailed question genuinely needs more
-- Never make up projects or facts not listed above
-- If asked something outside scope, redirect warmly`;
-
-  const messages = [{role:'system', content: SYSTEM}];
+  const messages = [];
   let isTyping = false;
 
   const win    = document.getElementById('chat-window');
