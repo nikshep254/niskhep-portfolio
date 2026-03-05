@@ -346,6 +346,10 @@
   .footer-copy a { color: var(--text); font-weight: 600; text-decoration: none; }
   .footer-copy a:hover { text-decoration: underline; }
 
+  /* ── ENTROPY WIDGET ── */
+  .entropy-widget-wrap { display: flex; justify-content: center; margin: 0 0 8px; }
+  .entropy-widget-wrap iframe { width: 100%; max-width: 480px; }
+
   /* ── SCROLL REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
   .reveal.visible { opacity: 1; transform: none; }
@@ -765,6 +769,11 @@
     </div>
   </div>
 
+  <!-- ENTROPY ZERO WIDGET -->
+  <div class="entropy-widget-wrap reveal">
+    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" width="480" height="280" frameborder="0" style="border-radius:20px;border:1px solid #2a2a2a;background:#0d0d0d;display:block;max-width:100%;"></iframe>
+  </div>
+
 </main>
 
 <!-- ── GITA CARD (golden) ── -->
@@ -1048,40 +1057,61 @@ refreshGita();
 // Auto-rotate every 8s
 setInterval(refreshGita, 8000);
 
-/* ── FLIP CLOCK VISITOR COUNTER ───────────────────────────────────── */
+/* ── FLIP CLOCK VISITOR COUNTER (live via CountAPI) ───────────────── */
 (function(){
-  const BASE = 2512;
-  let v = parseInt(localStorage.getItem('nd_v4')||'0',10)+1;
-  localStorage.setItem('nd_v4',v);
-  const total = BASE + v;
   const container = document.getElementById('flip-clock');
+  const sub = document.querySelector('.fv-sub');
   if (!container) return;
 
-  const digits = String(total).split('');
-  // add comma separators
-  const formatted = total.toLocaleString();
-  let html = '';
-  for (let ch of formatted) {
-    if (ch === ',') {
-      html += '<span class="flip-sep">,</span>';
-    } else {
-      html += `<div class="flip-digit"><span>${ch}</span></div>`;
+  function renderFlip(total) {
+    const formatted = total.toLocaleString();
+    let h = '';
+    for (let ch of formatted) {
+      if (ch === ',') {
+        h += '<span class="flip-sep">,</span>';
+      } else {
+        h += `<div class="flip-digit"><span>${ch}</span></div>`;
+      }
     }
+    container.innerHTML = h;
+    container.querySelectorAll('.flip-digit').forEach((d, i) => {
+      d.style.opacity = '0';
+      d.style.transform = 'rotateX(-90deg)';
+      d.style.transition = 'none';
+      setTimeout(() => {
+        d.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+        d.style.opacity = '1';
+        d.style.transform = 'rotateX(0deg)';
+      }, 200 + i * 80);
+    });
   }
-  container.innerHTML = html;
 
-  // Animate each digit flipping in
-  const flipDivs = container.querySelectorAll('.flip-digit');
-  flipDivs.forEach((d, i) => {
-    d.style.opacity = '0';
-    d.style.transform = 'rotateX(-90deg)';
-    d.style.transition = 'none';
-    setTimeout(() => {
-      d.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-      d.style.opacity = '1';
-      d.style.transform = 'rotateX(0deg)';
-    }, 200 + i * 80);
-  });
+  // Hit on load (increments), then poll GET every 10s (read-only, no increment)
+  let lastVal = 0;
+
+  function renderIfChanged(val) {
+    if (val !== lastVal) { lastVal = val; renderFlip(val); }
+  }
+
+  fetch('https://api.countapi.xyz/hit/nikshep-portfolio/pageviews')
+    .then(r => r.json())
+    .then(d => {
+      lastVal = d.value;
+      renderFlip(d.value);
+      if (sub) sub.textContent = 'Live page views 🌍';
+    })
+    .catch(() => {
+      container.innerHTML = '<span style="font-size:13px;color:var(--muted)">—</span>';
+      if (sub) sub.textContent = 'Counter offline';
+    });
+
+  // Poll every 10 seconds for live updates without incrementing
+  setInterval(() => {
+    fetch('https://api.countapi.xyz/get/nikshep-portfolio/pageviews')
+      .then(r => r.json())
+      .then(d => { if (d.value) renderIfChanged(d.value); })
+      .catch(() => {});
+  }, 10000);
 })();
 
 /* ── BENGALURU LIVE CLOCK ──────────────────────────────────────────── */
