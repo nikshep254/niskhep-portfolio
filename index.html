@@ -18,9 +18,6 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 60% 40% at 20% 10%, rgba(99,60,180,0.12) 0%, transparent 70%), radial-gradient(ellipse 50% 35% at 80% 80%, rgba(30,80,160,0.1) 0%, transparent 70%), #080810; }
-  body.light { --bg: #f0f0f5; --glass-bg: rgba(255,255,255,0.55); --glass-border: rgba(0,0,0,0.07); --text: #0f0f1a; --muted: #888; }
-  body.light::before { background: radial-gradient(ellipse 60% 40% at 20% 10%, rgba(140,100,220,0.07) 0%, transparent 70%), #f0f0f5; }
-  body.light nav { background: rgba(240,240,245,0.8); border-bottom-color: rgba(0,0,0,0.06); }
 
   /* ── NAV ── */
   nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; position: sticky; top: 0; z-index: 200; background: rgba(8,8,16,0.55); backdrop-filter: blur(22px) saturate(1.4); -webkit-backdrop-filter: blur(22px) saturate(1.4); border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 1px 40px rgba(0,0,0,0.4); }
@@ -32,8 +29,7 @@
   .nav-links a:hover { color: var(--text); }
   body.light .nav-links a { color: rgba(15,15,26,0.6); }
   body.light .nav-links a:hover { color: var(--text); }
-  .theme-btn { background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: background 0.2s; }
-  .theme-btn:hover { background: rgba(255,255,255,0.1); }
+
 
   /* ── MAIN ── */
   main { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
@@ -50,30 +46,15 @@
   .hero-desc { font-size: 15.5px; line-height: 1.75; opacity: 0.92; margin-bottom: 32px; max-width: 620px; }
   .tech-badge { display: inline-flex; align-items: center; gap: 5px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 7px; padding: 3px 10px; font-size: 13.5px; font-weight: 500; vertical-align: middle; margin: 2px; backdrop-filter: blur(8px); }
 
-  /* ── SPOTIFY CARD ── */
-  .spotify-card {
-    display: flex; align-items: center; gap: 14px;
-    background: rgba(29,185,84,0.07); border: 1px solid rgba(29,185,84,0.2);
-    border-radius: 16px; padding: 14px 18px; margin-bottom: 48px;
-    max-width: 400px; position: relative; overflow: hidden;
-    transition: background 0.2s, border-color 0.2s;
-    text-decoration: none; color: inherit;
+  /* ── SPOTIFY EMBED ── */
+  .spotify-embed-wrap { width: 100%; margin-bottom: 48px; }
+  .spotify-embed-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
+    color: #1DB954; margin-bottom: 10px;
   }
-  .spotify-card:hover { background: rgba(29,185,84,0.12); border-color: rgba(29,185,84,0.35); }
-  .spotify-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(29,185,84,0.04), transparent); pointer-events: none; }
-  .spotify-album { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: rgba(255,255,255,0.05); }
-  .spotify-info { flex: 1; min-width: 0; }
-  .spotify-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #1DB954; font-weight: 600; margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
-  .spotify-label svg { width: 11px; height: 11px; flex-shrink: 0; }
-  .spotify-track { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
-  .spotify-artist { font-size: 11px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .spotify-bars { display: flex; align-items: flex-end; gap: 2px; height: 18px; flex-shrink: 0; }
-  .spotify-bars span { width: 3px; background: #1DB954; border-radius: 2px; animation: spotify-eq 1.2s ease-in-out infinite; }
-  .spotify-bars span:nth-child(1) { animation-delay: 0s; }
-  .spotify-bars span:nth-child(2) { animation-delay: 0.2s; }
-  .spotify-bars span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes spotify-eq {
-    0%,100% { height: 4px; } 50% { height: 14px; }
+  .spotify-embed-wrap iframe {
+    width: 100%; height: 80px; border-radius: 12px; display: block;
   }
   /* ── CTA BLOCK ── */
   .cta-nudge { font-size: 13px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
@@ -372,9 +353,39 @@
   .footer-copy a:hover { text-decoration: underline; }
 
   /* ── ENTROPY WIDGET ── */
-  .entropy-widget-wrap { display: flex; justify-content: center; margin: 0 0 8px; }
-  .entropy-widget-wrap iframe { width: 480px; height: 280px; max-width: 100%; }
+  .entropy-widget-wrap { display: flex; justify-content: center; margin: 0 0 8px; overflow: visible; }
 
+
+  /* ── CARD SHINE BLAZES ── */
+  .shine-card { position: relative; overflow: hidden; }
+  .shine-card::after {
+    content: '';
+    position: absolute;
+    top: -60%; left: -75%;
+    width: 55%; height: 200%;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255,255,255,0.07) 45%,
+      rgba(255,255,255,0.13) 50%,
+      rgba(255,255,255,0.07) 55%,
+      transparent 70%
+    );
+    transform: skewX(-15deg);
+    pointer-events: none;
+    animation: card-shine 3.5s ease-in-out infinite;
+  }
+  /* stagger each card */
+  .shine-card:nth-child(2)::after { animation-delay: 0.7s; }
+  .shine-card:nth-child(3)::after { animation-delay: 1.4s; }
+  .shine-card:nth-child(4)::after { animation-delay: 2.1s; }
+  @keyframes card-shine {
+    0%   { left: -75%; opacity: 0; }
+    8%   { opacity: 1; }
+    35%  { left: 120%; opacity: 1; }
+    36%  { opacity: 0; }
+    100% { left: 120%; opacity: 0; }
+  }
   /* ── SCROLL REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
   .reveal.visible { opacity: 1; transform: none; }
@@ -424,7 +435,7 @@
 
   /* ── SKILLS CONSTELLATION ── */
   .skills-wrap { position: relative; margin-bottom: 52px; }
-  #skills-canvas { width: 100%; height: 260px; display: block; border-radius: 18px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); cursor: crosshair; }
+  #skills-canvas { width: 100%; height: 260px; display: block; border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.35); cursor: crosshair; }
 
   /* ── MAGNETIC BTN ── */
   .btn-touch { display: inline-flex; align-items: center; gap: 9px; padding: 12px 26px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: box-shadow 0.25s; font-family: inherit; color: #fff; border: none; position: relative; overflow: hidden; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 100%); box-shadow: 0 4px 24px rgba(109,40,217,0.35); margin-bottom: 48px; will-change: transform; }
@@ -505,7 +516,6 @@
       <li><a href="#life">Life</a></li><li><a href="#persona">Persona</a></li>
     </ul>
   </div>
-  <button class="theme-btn" id="theme-toggle">🌙</button>
 </nav>
 
 <main>
@@ -567,21 +577,14 @@
     Get in touch
   </a>
 
-  <!-- SPOTIFY LAST LISTENED -->
-  <a href="https://open.spotify.com/track/554qQSs9lpRVq6TlaaiIKT" target="_blank" class="spotify-card reveal">
-    <img class="spotify-album" id="sp-album" src="https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96" alt="album art" />
-    <div class="spotify-info">
-      <div class="spotify-label">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-        Last listened
-      </div>
-      <div class="spotify-track" id="sp-track">Blinding Lights</div>
-      <div class="spotify-artist" id="sp-artist">The Weeknd</div>
+  <!-- SPOTIFY EMBED -->
+  <div class="spotify-embed-wrap reveal">
+    <div class="spotify-embed-label">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Last listened
     </div>
-    <div class="spotify-bars">
-      <span></span><span></span><span></span>
-    </div>
-  </a>
+    <iframe src="https://open.spotify.com/embed/track/554qQSs9lpRVq6TlaaiIKT?utm_source=generator&theme=0" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
 
   <!-- EXPERIENCE -->
   <div id="experience">
@@ -589,7 +592,7 @@
     <h2 class="section-title">Experience</h2>
 
     <!-- Featured role -->
-    <div class="exp-featured reveal">
+    <div class="exp-featured reveal shine-card">
       <div class="exp-head">
         <div class="exp-logo" style="background:#050f05;padding:0;overflow:hidden;"><img src="data:image/png;base64,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" alt="BackyardDevs" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" /></div>
         <div class="exp-meta">
@@ -812,7 +815,7 @@
 
   <!-- ENTROPY ZERO WIDGET -->
   <div class="entropy-widget-wrap reveal">
-    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" frameborder="0" style="width:480px;height:280px;max-width:100%;border-radius:20px;border:1px solid #2a2a2a;background:#0d0d0d;display:block;"></iframe>
+    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" frameborder="0" style="border-radius:20px;border:1px solid #2a2a2a;background:#0d0d0d;display:block;"></iframe>
   </div>
 
 </main>
@@ -843,7 +846,7 @@
     <div class="footer-bento">
 
       <!-- Profile card -->
-      <div class="footer-profile-card reveal">
+      <div class="footer-profile-card reveal shine-card">
         <div class="fp-inner">
           <div class="fp-avatar">
             <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=BlueNinja&backgroundColor=1a1a2e" alt="Nikshep" />
@@ -861,7 +864,7 @@
       </div>
 
       <!-- Bio summary card -->
-      <div class="footer-bio-card reveal">
+      <div class="footer-bio-card reveal shine-card">
         <div class="fb-inner">
           <div class="fb-label">In a nutshell</div>
           <p class="fb-bio">
@@ -876,7 +879,7 @@
 
 
       <!-- Visitor flip clock card -->
-      <div class="footer-visitor-card reveal">
+      <div class="footer-visitor-card reveal shine-card">
         <div class="fv-inner">
           <div class="fv-label">Total Visitors</div>
           <div class="flip-clock" id="flip-clock"></div>
@@ -885,7 +888,7 @@
       </div>
 
       <!-- Bengaluru time + weather card -->
-      <div class="footer-local-card reveal">
+      <div class="footer-local-card reveal shine-card">
         <div class="fl-inner">
           <div class="fl-label">Nikshep's Location</div>
           <div class="fl-city"><span class="fl-city-dot"></span>Bengaluru, India · IST</div>
@@ -1238,10 +1241,6 @@ const ro = new IntersectionObserver(es => es.forEach(e => {
 document.querySelectorAll('.reveal').forEach((el,i)=>{ el.dataset.delay=Math.min(i*50,350); ro.observe(el); });
 
 /* ── THEME ────────────────────────────────────────────────────────── */
-document.getElementById('theme-toggle').addEventListener('click', function(){
-  document.body.classList.toggle('light');
-  this.textContent = document.body.classList.contains('light') ? '🌑' : '🌙';
-});
 
 /* ── TYPEWRITER ───────────────────────────────────────────────────── */
 (function() {
@@ -1447,11 +1446,11 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
     ctx.scale(dpr, dpr);
     nodes = skills.map((s, i) => ({
       ...s,
-      x: W * 0.06 + (W * 0.88) * (i % 7) / 6 + (Math.random()-0.5)*20,
-      y: H * 0.18 + (H * 0.64) * Math.floor(i / 7) + (Math.random()-0.5)*16,
-      vx: (Math.random()-0.5)*0.25,
-      vy: (Math.random()-0.5)*0.25,
-      r: 3.5,
+      x: W * 0.1 + Math.random() * W * 0.8,
+      y: H * 0.1 + Math.random() * H * 0.8,
+      vx: (Math.random()-0.5)*0.55,
+      vy: (Math.random()-0.5)*0.55,
+      r: 2.5,
     }));
   }
 
@@ -1462,12 +1461,12 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
       for(let j=i+1;j<nodes.length;j++){
         const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
         const d=Math.sqrt(dx*dx+dy*dy);
-        if(d<180){
+        if(d<220){
           ctx.beginPath();
           ctx.moveTo(nodes[i].x,nodes[i].y);
           ctx.lineTo(nodes[j].x,nodes[j].y);
-          ctx.strokeStyle=`rgba(80,60,140,${(1-d/180)*0.35})`;
-          ctx.lineWidth=0.6;
+          ctx.strokeStyle=`rgba(255,255,255,${(1-d/220)*0.28})`;
+          ctx.lineWidth=0.5;
           ctx.stroke();
         }
       }
@@ -1486,7 +1485,7 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
       ctx.beginPath(); ctx.arc(n.x,n.y,n.r+(glow*2.5),0,Math.PI*2);
       ctx.fillStyle=n.color; ctx.fill();
       ctx.font=`${500} 11px Inter,sans-serif`;
-      ctx.fillStyle=`rgba(245,245,255,${0.55+glow*0.4})`;
+      ctx.fillStyle=`rgba(255,255,255,${0.7+glow*0.3})`;
       ctx.textAlign='center';
       ctx.fillText(n.name,n.x,n.y+18);
       // drift
@@ -1564,25 +1563,6 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
   });
 })();
 
-/* ── SPOTIFY TRACK RESOLVE ─────────────────────────────────────────── */
-(function(){
-  fetch('https://open.spotify.com/oembed?url=https://open.spotify.com/track/554qQSs9lpRVq6TlaaiIKT')
-    .then(r => r.json())
-    .then(d => {
-      // title is usually "Track Name · Artist"
-      const parts = d.title.split(' · ');
-      const track = parts[0] || d.title;
-      const artist = parts[1] || '';
-      const thumb = d.thumbnail_url;
-      const t = document.getElementById('sp-track');
-      const a = document.getElementById('sp-artist');
-      const img = document.getElementById('sp-album');
-      if (t) t.textContent = track;
-      if (a) a.textContent = artist;
-      if (img && thumb) img.src = thumb;
-    })
-    .catch(() => {}); // fallback text already set in HTML
-})();
 
 /* ── LIFE EXPAND ─────────────────────────────────────────────────── */
 function toggleLife(id) {
