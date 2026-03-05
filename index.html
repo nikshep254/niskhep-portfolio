@@ -50,6 +50,31 @@
   .hero-desc { font-size: 15.5px; line-height: 1.75; opacity: 0.92; margin-bottom: 32px; max-width: 620px; }
   .tech-badge { display: inline-flex; align-items: center; gap: 5px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 7px; padding: 3px 10px; font-size: 13.5px; font-weight: 500; vertical-align: middle; margin: 2px; backdrop-filter: blur(8px); }
 
+  /* ── SPOTIFY CARD ── */
+  .spotify-card {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(29,185,84,0.07); border: 1px solid rgba(29,185,84,0.2);
+    border-radius: 16px; padding: 14px 18px; margin-bottom: 48px;
+    max-width: 400px; position: relative; overflow: hidden;
+    transition: background 0.2s, border-color 0.2s;
+    text-decoration: none; color: inherit;
+  }
+  .spotify-card:hover { background: rgba(29,185,84,0.12); border-color: rgba(29,185,84,0.35); }
+  .spotify-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(29,185,84,0.04), transparent); pointer-events: none; }
+  .spotify-album { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: rgba(255,255,255,0.05); }
+  .spotify-info { flex: 1; min-width: 0; }
+  .spotify-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #1DB954; font-weight: 600; margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
+  .spotify-label svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .spotify-track { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+  .spotify-artist { font-size: 11px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .spotify-bars { display: flex; align-items: flex-end; gap: 2px; height: 18px; flex-shrink: 0; }
+  .spotify-bars span { width: 3px; background: #1DB954; border-radius: 2px; animation: spotify-eq 1.2s ease-in-out infinite; }
+  .spotify-bars span:nth-child(1) { animation-delay: 0s; }
+  .spotify-bars span:nth-child(2) { animation-delay: 0.2s; }
+  .spotify-bars span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes spotify-eq {
+    0%,100% { height: 4px; } 50% { height: 14px; }
+  }
   /* ── CTA BLOCK ── */
   .cta-nudge { font-size: 13px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
   .cta-nudge-dot { width: 6px; height: 6px; border-radius: 50%; background: #a78bfa; animation: pulse-purple 2.2s infinite; flex-shrink: 0; }
@@ -348,7 +373,7 @@
 
   /* ── ENTROPY WIDGET ── */
   .entropy-widget-wrap { display: flex; justify-content: center; margin: 0 0 8px; }
-  .entropy-widget-wrap iframe { width: 100%; max-width: 480px; }
+  .entropy-widget-wrap iframe { width: 480px; height: 280px; max-width: 100%; }
 
   /* ── SCROLL REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
@@ -399,7 +424,7 @@
 
   /* ── SKILLS CONSTELLATION ── */
   .skills-wrap { position: relative; margin-bottom: 52px; }
-  #skills-canvas { width: 100%; height: 200px; display: block; border-radius: 18px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); cursor: crosshair; }
+  #skills-canvas { width: 100%; height: 260px; display: block; border-radius: 18px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); cursor: crosshair; }
 
   /* ── MAGNETIC BTN ── */
   .btn-touch { display: inline-flex; align-items: center; gap: 9px; padding: 12px 26px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: box-shadow 0.25s; font-family: inherit; color: #fff; border: none; position: relative; overflow: hidden; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 100%); box-shadow: 0 4px 24px rgba(109,40,217,0.35); margin-bottom: 48px; will-change: transform; }
@@ -540,6 +565,22 @@
   <a href="https://instagram.com/nikkk.exe" target="_blank" class="btn-touch reveal">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
     Get in touch
+  </a>
+
+  <!-- SPOTIFY LAST LISTENED -->
+  <a href="https://open.spotify.com/track/554qQSs9lpRVq6TlaaiIKT" target="_blank" class="spotify-card reveal">
+    <img class="spotify-album" id="sp-album" src="https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96" alt="album art" />
+    <div class="spotify-info">
+      <div class="spotify-label">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        Last listened
+      </div>
+      <div class="spotify-track" id="sp-track">Blinding Lights</div>
+      <div class="spotify-artist" id="sp-artist">The Weeknd</div>
+    </div>
+    <div class="spotify-bars">
+      <span></span><span></span><span></span>
+    </div>
   </a>
 
   <!-- EXPERIENCE -->
@@ -771,7 +812,7 @@
 
   <!-- ENTROPY ZERO WIDGET -->
   <div class="entropy-widget-wrap reveal">
-    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" width="480" height="280" frameborder="0" style="border-radius:20px;border:1px solid #2a2a2a;background:#0d0d0d;display:block;max-width:100%;"></iframe>
+    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" frameborder="0" style="width:480px;height:280px;max-width:100%;border-radius:20px;border:1px solid #2a2a2a;background:#0d0d0d;display:block;"></iframe>
   </div>
 
 </main>
@@ -1377,11 +1418,23 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const skills = [
+    // Tech / Dev
     {name:'TypeScript',color:'#3178C6'},{name:'React',color:'#61DAFB'},
     {name:'Next.js',color:'#e2e8f0'},{name:'Bun',color:'#f472b6'},
     {name:'Tailwind',color:'#06B6D4'},{name:'Three.js',color:'#a78bfa'},
     {name:'PostgreSQL',color:'#4169E1'},{name:'Vercel',color:'#f5f5ff'},
     {name:'Figma',color:'#F24E1E'},{name:'Node.js',color:'#68A063'},
+    // Tech interests
+    {name:'AI / LLMs',color:'#34d399'},{name:'Web3',color:'#f59e0b'},
+    // Finance
+    {name:'Finance',color:'#facc15'},{name:'Investing',color:'#fb923c'},
+    {name:'Crypto',color:'#818cf8'},
+    // Coding
+    {name:'Open Source',color:'#4ade80'},{name:'System Design',color:'#67e8f9'},
+    {name:'UI Craft',color:'#e879f9'},
+    // Music
+    {name:'Music',color:'#f87171'},{name:'Lo-fi',color:'#a78bfa'},
+    {name:'Spotify',color:'#1DB954'},
   ];
   let nodes = [], W, H, mouse = {x:-999,y:-999};
 
@@ -1394,8 +1447,8 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
     ctx.scale(dpr, dpr);
     nodes = skills.map((s, i) => ({
       ...s,
-      x: W * 0.08 + (W * 0.84) * (i % 5) / 4 + (Math.random()-0.5)*28,
-      y: H * 0.28 + (H * 0.44) * Math.floor(i / 5) + (Math.random()-0.5)*22,
+      x: W * 0.06 + (W * 0.88) * (i % 7) / 6 + (Math.random()-0.5)*20,
+      y: H * 0.18 + (H * 0.64) * Math.floor(i / 7) + (Math.random()-0.5)*16,
       vx: (Math.random()-0.5)*0.25,
       vy: (Math.random()-0.5)*0.25,
       r: 3.5,
@@ -1413,8 +1466,8 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
           ctx.beginPath();
           ctx.moveTo(nodes[i].x,nodes[i].y);
           ctx.lineTo(nodes[j].x,nodes[j].y);
-          ctx.strokeStyle=`rgba(167,139,250,${(1-d/180)*0.18})`;
-          ctx.lineWidth=1;
+          ctx.strokeStyle=`rgba(80,60,140,${(1-d/180)*0.35})`;
+          ctx.lineWidth=0.6;
           ctx.stroke();
         }
       }
@@ -1509,6 +1562,26 @@ document.getElementById('theme-toggle').addEventListener('click', function(){
   document.addEventListener('click', e => {
     if (on && !e.target.closest('#sound-btn')) click();
   });
+})();
+
+/* ── SPOTIFY TRACK RESOLVE ─────────────────────────────────────────── */
+(function(){
+  fetch('https://open.spotify.com/oembed?url=https://open.spotify.com/track/554qQSs9lpRVq6TlaaiIKT')
+    .then(r => r.json())
+    .then(d => {
+      // title is usually "Track Name · Artist"
+      const parts = d.title.split(' · ');
+      const track = parts[0] || d.title;
+      const artist = parts[1] || '';
+      const thumb = d.thumbnail_url;
+      const t = document.getElementById('sp-track');
+      const a = document.getElementById('sp-artist');
+      const img = document.getElementById('sp-album');
+      if (t) t.textContent = track;
+      if (a) a.textContent = artist;
+      if (img && thumb) img.src = thumb;
+    })
+    .catch(() => {}); // fallback text already set in HTML
 })();
 
 /* ── LIFE EXPAND ─────────────────────────────────────────────────── */
