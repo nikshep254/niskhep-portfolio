@@ -352,8 +352,43 @@
   .footer-copy a { color: var(--text); font-weight: 600; text-decoration: none; }
   .footer-copy a:hover { text-decoration: underline; }
 
-  /* ── ENTROPY WIDGET ── */
-  .entropy-widget-wrap { display: flex; justify-content: center; margin: 0 0 8px; overflow: visible; }
+
+  /* ── ENTROPY BENTO CARD ── */
+  .entropy-bento {
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 8px;
+    position: relative;
+  }
+  .entropy-bento::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(140deg, rgba(167,139,250,0.04) 0%, transparent 55%);
+    pointer-events: none; z-index: 0;
+  }
+  .entropy-bento-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px 12px;
+    position: relative; z-index: 1;
+  }
+  .entropy-bento-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--muted); font-weight: 600;
+  }
+  .entropy-bento-tag {
+    font-size: 10px; color: rgba(167,139,250,0.7);
+    background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.2);
+    border-radius: 6px; padding: 2px 8px; font-weight: 600;
+  }
+  .entropy-bento iframe {
+    display: block; width: 100%; border: none;
+    position: relative; z-index: 1;
+  }
+
 
 
   /* ── CARD SHINE BLAZES ── */
@@ -581,7 +616,7 @@
   <div class="spotify-embed-wrap reveal">
     <div class="spotify-embed-label">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Last listened
+      <span style="opacity:0.6;">nikkk.exe</span><span style="opacity:0.35;margin:0 4px;">·</span>Last listened
     </div>
     <iframe src="https://open.spotify.com/embed/track/554qQSs9lpRVq6TlaaiIKT?utm_source=generator&theme=0" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </div>
@@ -670,22 +705,10 @@
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
 
-      <a href="https://copiumai.xo.je" target="_blank" class="project-card reveal" data-url="https://copiumai.xo.je">
-        <div class="tilt-shine"></div>
-        <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
-        <div class="project-body"><div class="project-name">CopiumAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">AI-powered productivity tool with smart features for enhancing your workflow.</p><div class="project-tags"><span class="tag">AI</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
-      </a>
-
       <a href="https://entropyzero.vercel.app" target="_blank" class="project-card reveal" data-url="https://entropyzero.vercel.app">
         <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">EntropyZero <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Minimal web app focused on reducing digital noise and maximizing clarity.</p><div class="project-tags"><span class="tag">React</span><span class="tag">Vercel</span><span class="tag">UI/UX</span></div></div>
-      </a>
-
-      <a href="https://instagen-hyperdesi.vercel.app" target="_blank" class="project-card reveal" data-url="https://instagen-hyperdesi.vercel.app">
-        <div class="tilt-shine"></div>
-        <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
-        <div class="project-body"><div class="project-name">InstaGen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Instant generation platform — create stunning visuals at hyperspeed with AI.</p><div class="project-tags"><span class="tag">AI</span><span class="tag">Generation</span><span class="tag">Next.js</span></div></div>
       </a>
 
       <a href="https://rupeerewind.vercel.app" target="_blank" class="project-card reveal" data-url="https://rupeerewind.vercel.app">
@@ -700,10 +723,10 @@
         <div class="project-body"><div class="project-name">Aellium <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">A sleek, modern product — crafted with precision and a sharp eye for design.</p><div class="project-tags"><span class="tag">SaaS</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
       </a>
 
-      <a href="https://valentinespam.xo.je" target="_blank" class="project-card reveal" data-url="https://valentinespam.xo.je">
+      <a href="https://instagen-hyperdesi.vercel.app" target="_blank" class="project-card reveal" data-url="https://instagen-hyperdesi.vercel.app">
         <div class="tilt-shine"></div>
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
-        <div class="project-body"><div class="project-name">ValentineSpam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Send unlimited cute, chaotic Valentine's messages — a fun micro-app for the season.</p><div class="project-tags"><span class="tag">Fun</span><span class="tag">React</span><span class="tag">UI/UX</span></div></div>
+        <div class="project-body"><div class="project-name">InstaGen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">Instant generation platform — create stunning visuals at hyperspeed with AI.</p><div class="project-tags"><span class="tag">AI</span><span class="tag">Generation</span><span class="tag">Next.js</span></div></div>
       </a>
 
       <a href="https://kairosflow.vercel.app" target="_blank" class="project-card reveal" data-url="https://kairosflow.vercel.app">
@@ -711,6 +734,13 @@
         <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
         <div class="project-body"><div class="project-name">Kairos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">The right moment, beautifully captured — a flow-focused productivity experience.</p><div class="project-tags"><span class="tag">Productivity</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
       </a>
+
+      <a href="https://copiumai.xo.je" target="_blank" class="project-card reveal" data-url="https://copiumai.xo.je">
+        <div class="tilt-shine"></div>
+        <div class="project-preview-wrap"><div class="preview-loading"><div class="preview-spinner"></div><span>Loading…</span></div></div>
+        <div class="project-body"><div class="project-name">CopiumAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><p class="project-desc">AI-powered productivity tool with smart features for enhancing your workflow.</p><div class="project-tags"><span class="tag">AI</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div></div>
+      </a>
+
     </div>
   </div>
 
@@ -814,8 +844,12 @@
   </div>
 
   <!-- ENTROPY ZERO WIDGET -->
-  <div class="entropy-widget-wrap reveal">
-    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" frameborder="0" style="border-radius:20px;border:1px solid #2a2a2a;background:#0d0d0d;display:block;"></iframe>
+  <div class="entropy-bento reveal shine-card">
+    <div class="entropy-bento-header">
+      <span class="entropy-bento-label">Live Activity</span>
+      <span class="entropy-bento-tag">entropyzero.vercel.app</span>
+    </div>
+    <iframe src="https://entropyzero.vercel.app/widget.html?uid=ylQMHvRKeFNNE6f553gwt8TZmyo2" height="280" scrolling="no" style="background:#0d0d0d;"></iframe>
   </div>
 
 </main>
@@ -1700,4 +1734,4 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 </script>
 
 </body>
-</html>
+</html> 
